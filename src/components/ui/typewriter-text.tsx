@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface TypewriterTextProps {
   text: string;
@@ -12,12 +12,23 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   text,
   className = '',
   delay = 0,
-  speed = 0.05,
+  speed = 0.03,
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [isComplete, setIsComplete] = useState(false);
 
   const characters = text.split('');
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => {
+        setIsComplete(true);
+      }, delay + (characters.length * speed * 1000) + 500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, delay, characters.length, speed]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -26,18 +37,25 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
       transition: {
         delay,
         staggerChildren: speed,
+        when: "beforeChildren",
       },
     },
   };
 
   const childVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { 
+      opacity: 0, 
+      y: 10,
+      scale: 0.8 
+    },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        type: "spring",
-        stiffness: 100,
+        type: "tween" as const,
+        duration: 0.1,
+        ease: "easeOut" as const,
       },
     },
   };
@@ -52,7 +70,7 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
     >
       {characters.map((char, index) => (
         <motion.span
-          key={index}
+          key={`${char}-${index}`}
           variants={childVariants}
           className="inline-block"
         >
@@ -62,14 +80,14 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
       
       {/* Blinking cursor */}
       <motion.span
-        className="inline-block w-0.5 h-6 bg-primary ml-1"
+        className="inline-block w-0.5 h-6 bg-primary ml-1 rounded-sm"
         animate={{
-          opacity: [1, 1, 0, 0],
+          opacity: isComplete ? [1, 0] : [1, 1, 0, 0],
         }}
         transition={{
-          duration: 1,
+          duration: isComplete ? 0.8 : 1.2,
           repeat: Infinity,
-          repeatDelay: 0.5,
+          repeatType: "loop",
           delay: delay + (characters.length * speed),
         }}
       />
