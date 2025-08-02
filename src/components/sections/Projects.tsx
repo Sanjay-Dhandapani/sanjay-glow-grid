@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { ExternalLink, Github, Eye, Code2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import FloatingCard from '@/components/ui/floating-card';
+import MagneticButton from '@/components/ui/magnetic-button';
+import GlowingBorder from '@/components/ui/glowing-border';
 
 const Projects = () => {
   const ref = useRef(null);
@@ -75,82 +78,151 @@ const Projects = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
-          <motion.article
+          <FloatingCard
             key={project.id}
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="glass-card overflow-hidden group"
-            data-cursor-hover
-            data-grid-blur
+            className="group"
+            rotationIntensity={8}
+            levitationHeight={15}
           >
-            <div className="relative overflow-hidden">
-              <img
-                src={project.image}
-                alt={`${project.title} - Screenshot of the project`}
-                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
-
-            <div className="p-6 space-y-4">
-              <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
-                {project.title}
-              </h3>
-              
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {project.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {project.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 text-xs font-medium bg-muted rounded-full text-primary"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex gap-3 pt-4">
-                <Button
-                  size="sm"
-                  className="flex-1 bg-primary hover:bg-primary-glow"
-                  data-cursor-hover
-                  asChild
+            <motion.article
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ 
+                duration: 0.8, 
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100
+              }}
+              className="glass-card overflow-hidden h-full"
+              data-cursor-hover
+              data-grid-blur
+            >
+              {/* Project Image with Overlay */}
+              <div className="relative overflow-hidden">
+                <motion.img
+                  src={project.image}
+                  alt={`${project.title} - Screenshot of the project`}
+                  className="w-full h-48 object-cover"
+                  loading="lazy"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.4 }}
+                />
+                
+                {/* Gradient Overlay */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+                
+                {/* Floating Action Buttons */}
+                <motion.div
+                  className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={{ y: -20 }}
+                  whileHover={{ y: 0 }}
                 >
-                  <a
+                  <motion.a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`View live demo of ${project.title}`}
+                    className="w-10 h-10 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                   >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
-                  </a>
-                </Button>
-                
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                  data-cursor-hover
-                  asChild
-                >
-                  <a
+                    <Eye className="w-4 h-4" />
+                  </motion.a>
+                  <motion.a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`View source code for ${project.title} on GitHub`}
+                    className="w-10 h-10 bg-accent/90 backdrop-blur-sm rounded-full flex items-center justify-center text-accent-foreground hover:bg-accent transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <Code2 className="w-4 h-4" />
+                  </motion.a>
+                </motion.div>
+              </div>
+
+              {/* Project Content */}
+              <div className="p-6 space-y-4 flex-1 flex flex-col">
+                <motion.h3 
+                  className="text-xl font-bold group-hover:text-primary transition-colors"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: index * 0.1 + 0.3 }}
+                >
+                  {project.title}
+                </motion.h3>
+                
+                <motion.p 
+                  className="text-muted-foreground text-sm leading-relaxed flex-1"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: index * 0.1 + 0.4 }}
+                >
+                  {project.description}
+                </motion.p>
+
+                {/* Tech Stack */}
+                <motion.div 
+                  className="flex flex-wrap gap-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: index * 0.1 + 0.5 }}
+                >
+                  {project.techStack.map((tech, techIndex) => (
+                    <motion.span
+                      key={tech}
+                      className="px-3 py-1 text-xs font-medium bg-muted/50 backdrop-blur-sm rounded-full text-primary border border-primary/20"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ 
+                        delay: index * 0.1 + 0.6 + techIndex * 0.05,
+                        type: "spring",
+                        stiffness: 200
+                      }}
+                      whileHover={{ 
+                        scale: 1.1, 
+                        backgroundColor: "hsl(var(--primary) / 0.1)",
+                        transition: { duration: 0.2 }
+                      }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </motion.div>
+
+                {/* Action Buttons */}
+                <motion.div 
+                  className="flex gap-3 pt-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: index * 0.1 + 0.7 }}
+                >
+                  <MagneticButton
+                    className="flex-1 bg-gradient-to-r from-primary to-primary-glow text-primary-foreground font-semibold py-2 px-4 rounded-lg text-sm border-0"
+                    strength={0.3}
+                    onClick={() => window.open(project.liveUrl, '_blank')}
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <ExternalLink className="w-4 h-4" />
+                      Live Demo
+                    </div>
+                  </MagneticButton>
+                  
+                  <MagneticButton
+                    className="border border-primary/30 bg-transparent hover:bg-primary/10 text-primary py-2 px-4 rounded-lg text-sm backdrop-blur-sm"
+                    strength={0.2}
+                    onClick={() => window.open(project.githubUrl, '_blank')}
                   >
                     <Github className="w-4 h-4" />
-                  </a>
-                </Button>
+                  </MagneticButton>
+                </motion.div>
               </div>
-            </div>
-          </motion.article>
+            </motion.article>
+          </FloatingCard>
         ))}
       </div>
     </section>
