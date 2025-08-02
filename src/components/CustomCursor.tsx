@@ -3,21 +3,28 @@ import { motion } from 'framer-motion';
 
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
+  const [isHovering, setIsHovering] = useState<boolean | string>(false);
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    const handleMouseEnter = () => setIsHovering(true);
+    const handleMouseEnter = (e: Event) => {
+      const target = e.target as HTMLElement;
+      // Check if hovering over text elements
+      const isTextElement = target.tagName.match(/^(H[1-6]|P|SPAN|A|BUTTON)$/) || 
+                           target.closest('h1, h2, h3, h4, h5, h6, p, span, a, button');
+      setIsHovering(isTextElement ? 'text' : true);
+    };
+    
     const handleMouseLeave = () => setIsHovering(false);
 
     // Add event listeners for cursor tracking
     document.addEventListener('mousemove', updateMousePosition);
 
-    // Add hover listeners to interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, [data-cursor-hover]');
+    // Add hover listeners to interactive elements and text
+    const interactiveElements = document.querySelectorAll('a, button, [data-cursor-hover], h1, h2, h3, h4, h5, h6, p, span');
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', handleMouseEnter);
       el.addEventListener('mouseleave', handleMouseLeave);
@@ -39,7 +46,7 @@ const CustomCursor = () => {
         animate={{
           x: mousePosition.x - 8,
           y: mousePosition.y - 8,
-          scale: isHovering ? 1.5 : 1,
+          scale: isHovering === 'text' ? 2.5 : isHovering ? 1.5 : 1,
         }}
         transition={{
           type: "spring",
@@ -53,7 +60,7 @@ const CustomCursor = () => {
         animate={{
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,
-          scale: isHovering ? 1.2 : 1,
+          scale: isHovering === 'text' ? 2 : isHovering ? 1.2 : 1,
         }}
         transition={{
           type: "spring",

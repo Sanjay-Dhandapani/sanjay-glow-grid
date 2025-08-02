@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import AnimatedTitle from '../AnimatedTitle';
 
 const Hero = () => {
   const scrollToNext = () => {
@@ -29,10 +30,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
+          className="mb-8"
         >
-          <h2 className="text-2xl md:text-3xl text-muted-foreground mb-8 font-light">
-            Full-Stack Web Developer
-          </h2>
+          <AnimatedTitle />
         </motion.div>
         
         <motion.div
