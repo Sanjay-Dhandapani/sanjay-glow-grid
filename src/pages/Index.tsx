@@ -1,5 +1,6 @@
 import CustomCursor from '@/components/CustomCursor';
 import AnimatedGrid from '@/components/AnimatedGrid';
+import Navigation from '@/components/Navigation';
 import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import Skills from '@/components/sections/Skills';
@@ -12,6 +13,9 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       {/* Custom Cursor */}
       <CustomCursor />
+      
+      {/* Navigation */}
+      <Navigation />
       
       {/* Animated Grid Background */}
       <AnimatedGrid />

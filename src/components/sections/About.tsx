@@ -20,7 +20,7 @@ const About = () => {
           <div className="relative w-full max-w-md mx-auto">
             <div className="absolute inset-0 bg-gradient-primary rounded-2xl blur-xl opacity-30" />
             <img
-              src="/lovable-uploads/705bb5fd-b2fa-4766-814c-35287bceca2d.png"
+              src="/lovable-uploads/224479e8-d491-449c-a9f8-ccb0b9c8aedb.png"
               alt="Sanjay Dhandapani - Full-Stack Web Developer"
               className="relative w-full h-auto rounded-2xl shadow-card"
             />
