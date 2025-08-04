@@ -52,9 +52,9 @@ const Navigation = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-background/85 backdrop-blur-xl border-b border-border/30 shadow-lg' 
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+        isScrolled
+          ? 'bg-background/95 backdrop-blur-xl border-b border-border/30 shadow-lg'
           : 'bg-transparent'
       }`}
     >

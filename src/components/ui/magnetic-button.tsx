@@ -1,16 +1,15 @@
 import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
-interface MagneticButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface MagneticButtonProps extends Omit<HTMLMotionProps<'button'>, 'ref'> {
   children: React.ReactNode;
   className?: string;
   strength?: number;
-  asChild?: boolean;
 }
 
 const MagneticButton = React.forwardRef<HTMLButtonElement, MagneticButtonProps>(
-  ({ children, className, strength = 0.3, asChild, ...props }, ref) => {
+  ({ children, className, strength = 0.3, ...props }, ref) => {
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
 

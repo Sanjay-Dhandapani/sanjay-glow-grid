@@ -23,7 +23,7 @@ const Index = () => {
         <AnimatedGrid />
         
         {/* Main Content */}
-        <main>
+        <main className="relative z-10">
           <Hero />
           <About />
           <Skills />
