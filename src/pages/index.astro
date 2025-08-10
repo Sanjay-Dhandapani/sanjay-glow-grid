@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Skills from '../components/sections/Skills.astro';
+import Projects from '../components/sections/Projects.astro';
+import Experience from '../components/sections/Experience.astro';
+import Contact from '../components/sections/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Sanjay Dhandapani - Full Stack Developer & Software Engineer | Portfolio"
+  description="Passionate Full Stack Developer specializing in React, Node.js, TypeScript, and modern web technologies. Building innovative solutions with clean, efficient code. View my projects and experience."
+  image="/images/og-image.jpg"
+>
+  <main class="relative z-10">
+    <Hero />
+    <About />
+    <Skills />
+    <Experience />
+    <Projects />
+    <Contact />
+  </main>
+  
+  <Footer />
+</Layout>

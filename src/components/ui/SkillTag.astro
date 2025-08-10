@@ -1,0 +1,20 @@
+---
+const { label, category = "default" } = Astro.props as {
+  label: string;
+  category?: "Languages" | "Frontend" | "Backend" | "Tools" | "Databases" | "Cloud" | "default";
+};
+
+const categoryColors: Record<string, string> = {
+  Languages: "bg-primary/10 text-primary border-primary/30",
+  Frontend: "bg-accent/10 text-accent border-accent/30",
+  Backend: "bg-secondary/10 text-secondary border-secondary/30",
+  Tools: "bg-fg/5 text-fg border-border",
+  Databases: "bg-fg/5 text-fg border-border",
+  Cloud: "bg-fg/5 text-fg border-border",
+  default: "bg-fg/5 text-fg border-border",
+};
+
+const base = "inline-flex items-center rounded-md border px-2.5 py-1 text-xs font-medium";
+const cls = `${base} ${categoryColors[category] ?? categoryColors.default}`;
+---
+<span class={cls} aria-label={`Skill: ${label}`}>{label}</span>

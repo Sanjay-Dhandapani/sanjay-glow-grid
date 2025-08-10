@@ -1,0 +1,49 @@
+---
+/**
+ * DownloadResume.astro
+ * Accessible button/link to download resume and link to a future resume page.
+ * Props:
+ * - href: optional direct file path. If absent, falls back to /resume (placeholder page to be added later).
+ * - filename: optional suggested filename for download
+ * - variant: visual variant for Button-like styles (minimal local styles to avoid JS)
+ */
+type Props = {
+  href?: string;
+  filename?: string;
+  variant?: "primary" | "secondary" | "outline";
+  srLabel?: string;
+};
+
+const {
+  href = "/resume", // placeholder route for Phase 3
+  filename = "Sanjay-Dhandapani-Resume.pdf",
+  variant = "primary",
+  srLabel = "Download resume",
+} = Astro.props as Props;
+
+const classes =
+  variant === "secondary"
+    ? "bg-secondary/10 text-secondary hover:bg-secondary/20 border border-secondary/30"
+    : variant === "outline"
+    ? "bg-transparent text-token hover:bg-bg/60 border border-border"
+    : "bg-primary text-white hover:bg-primary/90 border border-primary/60";
+---
+
+<div class="inline-flex items-center gap-2">
+  <a
+    href={href}
+    download={href.endsWith(".pdf") ? filename : undefined}
+    class={`inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${classes}`}
+    aria-label={srLabel}
+  >
+    <span aria-hidden="true">⬇</span>
+    <span>Download Resume</span>
+  </a>
+  <a
+    href="/resume"
+    class="text-sm text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+    aria-label="Open resume page"
+  >
+    View resume →
+  </a>
+</div>

@@ -1,0 +1,33 @@
+---
+const { href, variant = "primary", size = "md", external = false } = Astro.props as {
+  href?: string;
+  variant?: "primary" | "secondary" | "ghost" | "outline";
+  size?: "sm" | "md" | "lg";
+  external?: boolean;
+};
+const base =
+  "inline-flex items-center justify-center gap-2 rounded-md font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 disabled:pointer-events-none";
+const variants: Record<string, string> = {
+  primary: "bg-primary text-fg/95 hover:bg-primary/90",
+  secondary: "bg-secondary text-fg/95 hover:bg-secondary/90",
+  ghost: "bg-transparent text-fg hover:bg-card border border-transparent",
+  outline: "bg-transparent text-fg border border-border hover:bg-card",
+};
+const sizes: Record<string, string> = {
+  sm: "h-9 px-3 text-sm",
+  md: "h-10 px-4 text-sm",
+  lg: "h-11 px-5 text-base",
+};
+const cls = `${base} ${variants[variant] ?? variants.primary} ${sizes[size] ?? sizes.md}`;
+const rel = external ? "noopener noreferrer" : undefined;
+const target = external ? "_blank" : undefined;
+---
+{href ? (
+  <a href={href} class={cls} rel={rel} target={target}>
+    <slot />
+  </a>
+) : (
+  <button class={cls}>
+    <slot />
+  </button>
+)}

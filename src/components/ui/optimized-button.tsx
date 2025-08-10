@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
+import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -12,6 +13,9 @@ interface OptimizedButtonProps {
   loading?: boolean;
   icon?: ReactNode;
   fullWidth?: boolean;
+  ariaLabel?: string;
+  ariaLive?: 'off' | 'polite' | 'assertive';
+  role?: string;
 }
 
 const OptimizedButton = ({
@@ -23,7 +27,10 @@ const OptimizedButton = ({
   disabled = false,
   loading = false,
   icon,
-  fullWidth = false
+  fullWidth = false,
+  ariaLabel,
+  ariaLive,
+  role = "button"
 }: OptimizedButtonProps) => {
   
   // Base styles with consistent design
@@ -60,18 +67,21 @@ const OptimizedButton = ({
       className={combinedClassName}
       onClick={onClick}
       disabled={disabled || loading}
-      whileHover={{ 
+      aria-label={ariaLabel}
+      aria-live={ariaLive}
+      role={role}
+      whileHover={{
         scale: disabled ? 1 : 1.02,
         y: disabled ? 0 : -1
       }}
-      whileTap={{ 
+      whileTap={{
         scale: disabled ? 1 : 0.98,
         y: disabled ? 0 : 0
       }}
-      transition={{ 
-        type: "spring", 
-        stiffness: 400, 
-        damping: 25 
+      transition={{
+        type: "spring",
+        stiffness: 400,
+        damping: 25
       }}
     >
       {/* Loading spinner */}

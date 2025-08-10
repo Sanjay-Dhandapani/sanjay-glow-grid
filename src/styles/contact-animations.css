@@ -1,0 +1,231 @@
+/* Contact form specific animations */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+/* Enhanced focus states for form elements */
+.form-field-focus {
+  @apply ring-2 ring-primary/50 ring-offset-2 ring-offset-bg;
+}
+
+/* Gradient backgrounds for enhanced visuals */
+.bg-gradient-mesh {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(var(--color-accent)) 100%);
+}
+
+/* Glass morphism effects */
+.glass-card-premium {
+  @apply bg-card/80 backdrop-blur-xl border border-border/50;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.2),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Holographic text effect */
+.holographic {
+  background: linear-gradient(
+    45deg,
+    rgb(var(--color-primary)),
+    rgb(var(--color-accent)),
+    rgb(var(--color-primary))
+  );
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: holographic 3s ease-in-out infinite;
+}
+
+@keyframes holographic {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Shimmer effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.shimmer:hover::before {
+  left: 100%;
+}
+
+/* Floating animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse effects */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Signature heading style */
+.signature-heading {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--color-primary)) 0%,
+    rgb(var(--color-accent)) 50%,
+    rgb(var(--color-secondary)) 100%
+  );
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Enhanced button styles */
+.btn-primary-enhanced {
+  @apply relative overflow-hidden;
+  background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(var(--color-accent)) 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-primary-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn-primary-enhanced:hover::before {
+  left: 100%;
+}
+
+/* Form field enhancements */
+.form-field-enhanced {
+  @apply relative;
+  transition: all 0.3s ease;
+}
+
+.form-field-enhanced:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(var(--color-primary), 0.15);
+}
+
+/* Loading spinner */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Success checkmark animation */
+@keyframes checkmark {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-checkmark {
+  stroke-dasharray: 100;
+  animation: checkmark 0.6s ease-in-out;
+}
+
+/* Progress bar animation */
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+}
+
+.animate-progress {
+  animation: progress 0.5s ease-out;
+}

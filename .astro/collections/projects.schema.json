@@ -1,0 +1,86 @@
+{
+  "$ref": "#/definitions/projects",
+  "definitions": {
+    "projects": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "published"
+          ],
+          "default": "published"
+        },
+        "year": {
+          "type": "string",
+          "pattern": "^\\d{4}$"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "frontend",
+            "backend",
+            "fullstack",
+            "mobile"
+          ]
+        },
+        "techStack": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "liveUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "githubUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "coverImage": {
+          "type": "string"
+        },
+        "highlights": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "order": {
+          "type": "number"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "slug",
+        "description",
+        "category",
+        "techStack"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

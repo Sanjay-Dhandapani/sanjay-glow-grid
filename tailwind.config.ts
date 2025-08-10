@@ -7,15 +7,18 @@ export default {
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/**/*.{js,ts,jsx,tsx}",
 	],
 	prefix: "",
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: {
+				DEFAULT: '1rem',
+				lg: '2rem',
+			},
 			screens: {
-				'2xl': '1400px'
+				'2xl': '1320px',
 			}
 		},
 		extend: {
@@ -27,6 +30,7 @@ export default {
 				'brand': ['var(--font-brand)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 			},
 			fontSize: {
+				// base Tailwind sizes preserved
 				'xs': ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.025em' }],
 				'sm': ['0.875rem', { lineHeight: '1.25rem', letterSpacing: '0.025em' }],
 				'base': ['1rem', { lineHeight: '1.5rem', letterSpacing: '0.015em' }],
@@ -40,6 +44,16 @@ export default {
 				'7xl': ['4.5rem', { lineHeight: '4.75rem', letterSpacing: '-0.025em' }],
 				'8xl': ['6rem', { lineHeight: '6.25rem', letterSpacing: '-0.03em' }],
 				'9xl': ['8rem', { lineHeight: '8.25rem', letterSpacing: '-0.035em' }],
+
+				// Cinematic heading/body tokens
+				'display': ['clamp(3rem, 6vw, 5.5rem)', { lineHeight: '1.05', letterSpacing: '-0.02em', fontWeight: '700' }],
+				'h1': ['clamp(2.25rem, 4vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.015em', fontWeight: '700' }],
+				'h2': ['clamp(1.875rem, 3vw, 2.75rem)', { lineHeight: '1.15', letterSpacing: '-0.01em', fontWeight: '700' }],
+				'h3': ['clamp(1.5rem, 2.5vw, 2rem)', { lineHeight: '1.2', letterSpacing: '-0.005em', fontWeight: '600' }],
+				'h4': ['clamp(1.25rem, 2vw, 1.5rem)', { lineHeight: '1.25', letterSpacing: '0', fontWeight: '600' }],
+				'body-lg': ['1.125rem', { lineHeight: '1.85', letterSpacing: '0', fontWeight: '400' }],
+				'body': ['1rem', { lineHeight: '1.8', letterSpacing: '0', fontWeight: '400' }],
+				'body-sm': ['0.9375rem', { lineHeight: '1.7', letterSpacing: '0', fontWeight: '400' }],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -47,6 +61,21 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				// Global aliases for consistent usage
+				surface: {
+					DEFAULT: 'hsl(var(--surface))',
+					hover: 'hsl(var(--surface-hover))',
+					active: 'hsl(var(--surface-active))',
+					subtle: 'hsl(var(--surface-subtle))',
+					muted: 'hsl(var(--surface-muted))',
+				},
+				muted: {
+					DEFAULT: 'hsl(var(--muted))',
+					foreground: 'hsl(var(--muted-foreground))'
+				},
+				subtle: {
+					DEFAULT: 'hsl(var(--surface-subtle))'
+				},
 				// Premium Brand Colors - Distinctive Sanjay Dhandapani Identity
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
@@ -81,6 +110,13 @@ export default {
 					glow: 'hsl(var(--accent-glow))',
 					muted: 'hsl(var(--accent-muted))',
 					subtle: 'hsl(var(--accent-subtle))',
+				},
+				// Aliases to ensure presence
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))',
+					glow: 'hsl(var(--secondary-glow))',
+					muted: 'hsl(var(--secondary-muted))',
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',

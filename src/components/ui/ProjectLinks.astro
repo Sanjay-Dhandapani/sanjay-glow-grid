@@ -1,0 +1,36 @@
+---
+const {
+  liveUrl,
+  githubUrl,
+  className = "",
+} = Astro.props as {
+  liveUrl?: string;
+  githubUrl?: string;
+  className?: string;
+};
+---
+
+<div class={`flex flex-wrap items-center gap-3 ${className}`} aria-label="Project links">
+  {liveUrl && (
+    <a
+      href={liveUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1.5 rounded-md border border-border bg-card px-3 py-1.5 text-sm text-primary hover:border-primary/60 hover:bg-primary/10 focus:outline-none focus-visible:ring-2 ring-ring transition-colors"
+    >
+      <span aria-hidden="true">🔗</span>
+      <span>Live Demo</span>
+    </a>
+  )}
+  {githubUrl && (
+    <a
+      href={githubUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1.5 rounded-md border border-border bg-card px-3 py-1.5 text-sm text-fg hover:border-primary/60 hover:bg-primary/10 focus:outline-none focus-visible:ring-2 ring-ring transition-colors"
+    >
+      <span aria-hidden="true">📦</span>
+      <span>GitHub</span>
+    </a>
+  )}
+</div>

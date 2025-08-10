@@ -1,0 +1,85 @@
+---
+import "../styles/globals.css";
+import "../styles/tokens.css";
+import { buildMeta } from "../lib/seo/metadata";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+
+const { title = "Home", description = "Portfolio", og = {} } = Astro.props as any;
+const meta = buildMeta({ title, description, og });
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <meta property="og:title" content={meta.ogTitle} />
+    <meta property="og:description" content={meta.ogDescription} />
+    <meta property="og:type" content="website" />
+    {meta.ogImage && <meta property="og:image" content={meta.ogImage} />}
+
+    <!-- Early theme/motion init to prevent FOUC -->
+    <script is:inline>
+      (function () {
+        try {
+          var d = document.documentElement;
+
+          // Motion first (so theme transition logic can respect it)
+          var mKey = 'site:motion-mode';
+          var mStored = localStorage.getItem(mKey);
+          var mMode = (mStored === 'full' || mStored === 'reduced' || mStored === 'off' || mStored === 'auto') ? mStored : 'auto';
+          function mPrefersReduced() {
+            return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          }
+          var mEffective = mMode === 'auto' ? (mPrefersReduced() ? 'reduced' : 'full') : mMode;
+          d.setAttribute('data-motion', mEffective);
+
+          // Theme
+          var tKey = 'site:theme-mode';
+          var tStored = localStorage.getItem(tKey);
+          var tMode = (tStored === 'light' || tStored === 'dark' || tStored === 'auto') ? tStored : 'auto';
+          function prefersDark() {
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          }
+          var tEffective = tMode === 'auto' ? (prefersDark() ? 'dark' : 'light') : tMode;
+          d.setAttribute('data-theme', tEffective);
+        } catch (_) {
+          // If anything fails, we keep defaults (dark/motion full)
+        }
+      })();
+    </script>
+
+    <!-- Skip link styles -->
+    <style>
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: rgb(var(--color-card) / 1);
+        color: rgb(var(--color-fg) / 1);
+        padding: 8px 12px;
+        border: 1px solid rgb(var(--color-border) / 1);
+        border-radius: 6px;
+        transition: top 0.2s ease;
+        z-index: 100;
+      }
+      .skip-link:focus {
+        top: 8px;
+        outline: none;
+        box-shadow: 0 0 0 2px rgb(var(--color-ring) / 1);
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <header role="banner">
+      <Navigation />
+    </header>
+    <main id="main" role="main" class="min-h-[60vh]">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

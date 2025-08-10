@@ -1,0 +1,17 @@
+---
+const { items = [] as string[], className = "" } = Astro.props as {
+  items: string[];
+  className?: string;
+};
+---
+
+<ul class={`flex flex-wrap gap-2 ${className}`} role="list" aria-label="Tech stack">
+  {items.map((tech: string) => (
+    <li>
+      <!-- Reuse SkillTag if present; fallback to styled span -->
+      <span class="inline-flex items-center rounded-md border border-border bg-card px-2 py-1 text-xs text-muted">
+        {tech}
+      </span>
+    </li>
+  ))}
+</ul>

@@ -75,11 +75,16 @@ const AnimatedGrid = () => {
     tertiary: 'hsl(var(--tertiary))'
   }), []);
 
+  // Check global motion setting
+  const motionAttr = typeof document !== 'undefined' ? document.documentElement.getAttribute('data-motion') : null;
+  const motionOff = motionAttr === 'off';
+  const motionReduced = motionAttr === 'reduced';
+
   return (
     <>
       {/* Optimized Grid Background with subtle pattern */}
       <div
-        className={`fixed inset-0 pointer-events-none z-[-10] transition-all duration-700 ${
+        className={`fixed inset-0 pointer-events-none z-[-10] ${!motionOff ? 'transition-all duration-700' : ''} ${
           isBlurred ? 'opacity-5 blur-sm scale-102' : 'opacity-20'
         }`}
         style={{
@@ -93,65 +98,84 @@ const AnimatedGrid = () => {
       />
 
       {/* Subtle gradient overlay */}
-      <motion.div
-        className="fixed inset-0 pointer-events-none z-[-9]"
-        animate={{
-          background: isBlurred
-            ? 'radial-gradient(800px circle at 50% 50%, hsl(var(--primary) / 0.08), transparent 70%)'
-            : 'radial-gradient(600px circle at 50% 50%, hsl(var(--primary) / 0.04), transparent 70%)'
-        }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-      />
+      {!motionOff ? (
+        <motion.div
+          className="fixed inset-0 pointer-events-none z-[-9]"
+          animate={{
+            background: isBlurred
+              ? 'radial-gradient(800px circle at 50% 50%, hsl(var(--primary) / 0.08), transparent 70%)'
+              : 'radial-gradient(600px circle at 50% 50%, hsl(var(--primary) / 0.04), transparent 70%)'
+          }}
+          transition={{ duration: motionReduced ? 0.4 : 0.7, ease: "easeOut" }}
+        />
+      ) : null}
 
       {/* Optimized Floating Particles */}
       <div className="fixed inset-0 pointer-events-none z-[-8] overflow-hidden">
         {particles.map(particle => (
-          <motion.div
-            key={particle.id}
-            className="absolute rounded-full"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: particle.size,
-              height: particle.size,
-              backgroundColor: particleColors[particle.color],
-            }}
-            initial={{ 
-              opacity: 0, 
-              scale: 0,
-            }}
-            animate={{
-              opacity: [0, particle.opacity, particle.opacity * 0.5, particle.opacity],
-              scale: [0, 1, 1.2, 1],
-              y: [0, -20, 0],
-              x: [0, 10, 0],
-            }}
-            transition={{
-              duration: 8,
-              delay: particle.delay,
-              repeat: Infinity,
-              ease: "easeInOut",
-              repeatType: "reverse"
-            }}
-          />
+          !motionOff ? (
+            <motion.div
+              key={particle.id}
+              className="absolute rounded-full"
+              style={{
+                left: `${particle.x}%`,
+                top: `${particle.y}%`,
+                width: particle.size,
+                height: particle.size,
+                backgroundColor: particleColors[particle.color],
+              }}
+              initial={{
+                opacity: 0,
+                scale: 0,
+              }}
+              animate={{
+                opacity: [0, particle.opacity, particle.opacity * 0.5, particle.opacity],
+                scale: [0, 1, 1.2, 1],
+                y: [0, -20, 0],
+                x: [0, 10, 0],
+              }}
+              transition={{
+                duration: motionReduced ? 5 : 8,
+                delay: particle.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+                repeatType: "reverse"
+              }}
+            />
+          ) : (
+            <div
+              key={particle.id}
+              className="absolute rounded-full"
+              style={{
+                left: `${particle.x}%`,
+                top: `${particle.y}%`,
+                width: particle.size,
+                height: particle.size,
+                backgroundColor: particleColors[particle.color],
+                opacity: particle.opacity,
+              }}
+            />
+          )
         ))}
       </div>
 
       {/* Subtle pulsing accent */}
-      <motion.div
-        className="fixed inset-0 pointer-events-none z-[-7]"
-        style={{
-          background: 'radial-gradient(circle at 20% 80%, hsl(var(--accent) / 0.03), transparent 50%)',
-        }}
-        animate={{
-          opacity: [0.5, 0.8, 0.5],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+      {!motionOff ? (
+        <motion.div
+          className="fixed inset-0 pointer-events-none z-[-7]"
+          style={{
+            background: 'radial-gradient(circle at 20% 80%, hsl(var(--accent) / 0.03), transparent 50%)',
+          }}
+          animate={{
+            opacity: [0.5, 0.8, 0.5],
+          }}
+          transition={{
+            duration: motionReduced ? 4 : 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      ) : null}
     </>
   );
 };

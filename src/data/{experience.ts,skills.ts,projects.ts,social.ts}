@@ -1,0 +1,145 @@
+// experience.ts
+export type ExperienceItem = {
+  company: string;
+  role: string;
+  period: string;
+  duration?: string;
+  location?: string;
+  description?: string;
+  achievements?: string[];
+};
+
+export const experience: ExperienceItem[] = [
+  {
+    company: "Accenture",
+    role: "Software Development Intern",
+    period: "2023",
+    duration: "6 months",
+    location: "Coimbatore, Tamil Nadu, India",
+    description:
+      "Collaborated with cross-functional teams to develop scalable web applications using modern technologies. Practiced agile methodologies and enterprise-grade standards.",
+    achievements: [
+      "Contributed to 3 client projects with React.js and Spring Boot",
+      "Improved application performance by 25% through optimization",
+      "Followed best practices through code reviews and mentorship",
+    ],
+  },
+  {
+    company: "Newmak Technology",
+    role: "Developer (Trainee/Associate)",
+    period: "2024",
+    location: "Coimbatore, Tamil Nadu, India",
+    description:
+      "Worked on full‑stack features across frontend and backend services. Built REST APIs, integrated authentication, and optimized UI/UX workflows.",
+    achievements: [
+      "Implemented JWT-based authentication for internal tools",
+      "Built and documented REST endpoints consumed by frontend",
+      "Collaborated on microservice communication patterns",
+    ],
+  },
+];
+
+// skills.ts
+export type SkillCategory = "languages" | "frontend" | "backend" | "tools";
+
+export type Skill = {
+  name: string;
+  category: SkillCategory;
+  level?: number; // optional % for visualizations
+};
+
+export const skills: Record<SkillCategory, Skill[]> = {
+  languages: [
+    { name: "C++", category: "languages", level: 90 },
+    { name: "Java", category: "languages", level: 88 },
+    { name: "JavaScript", category: "languages", level: 92 },
+  ],
+  frontend: [
+    { name: "HTML/CSS", category: "frontend" },
+    { name: "Bootstrap", category: "frontend" },
+    { name: "React.js", category: "frontend" },
+    { name: "TypeScript", category: "frontend" },
+  ],
+  backend: [
+    { name: "MySQL", category: "backend" },
+    { name: "JWT", category: "backend" },
+    { name: "Microservices", category: "backend" },
+    { name: "REST API", category: "backend" },
+    { name: "Spring Boot", category: "backend" },
+    { name: "Node.js", category: "backend" },
+  ],
+  tools: [],
+};
+
+// projects.ts
+export type Project = {
+  slug: string;
+  title: string;
+  description: string;
+  category: "frontend" | "backend" | "fullstack" | "mobile";
+  year?: string;
+  duration?: string;
+  techStack: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  featured?: boolean;
+  highlights?: string[];
+};
+
+export const projects: Project[] = [
+  {
+    slug: "house-interior-website",
+    title: "House Interior Website",
+    description:
+      "Responsive website showcasing interior designs with clean UI and smooth navigation.",
+    category: "frontend",
+    year: "2023",
+    techStack: ["HTML/CSS", "JavaScript", "Bootstrap"],
+    featured: true,
+    highlights: ["Responsive layout", "Gallery showcase", "Accessible UI"],
+  },
+  {
+    slug: "expense-tracker",
+    title: "Expense Tracker",
+    description:
+      "A personal finance tracker for managing daily expenses with charts and summaries.",
+    category: "fullstack",
+    year: "2024",
+    techStack: ["React.js", "Node.js", "MySQL", "REST API", "JWT"],
+    highlights: ["Auth with JWT", "CRUD operations", "Data visualization"],
+  },
+  {
+    slug: "digital-marketing-app",
+    title: "Digital Marketing App",
+    description:
+      "App to plan, schedule, and monitor marketing campaigns with analytics.",
+    category: "fullstack",
+    year: "2024",
+    techStack: ["React.js", "Spring Boot", "REST API", "MySQL"],
+    highlights: ["Campaign scheduler", "Analytics dashboard", "Role-based access"],
+  },
+  {
+    slug: "portfolio-website",
+    title: "Portfolio Website",
+    description:
+      "Personal portfolio highlighting projects, skills, and contact information.",
+    category: "frontend",
+    year: "2024",
+    techStack: ["React.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
+    featured: true,
+    highlights: ["Motion design", "Responsive", "Accessible"],
+  },
+];
+
+// social.ts
+export type SocialLink = {
+  name: "LinkedIn" | "GitHub" | "Email" | "Phone";
+  url: string;
+};
+
+export const social: SocialLink[] = [
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/sanjaydhandapani6066/" },
+  { name: "GitHub", url: "https://github.com/Sanjay-Dhandapani" },
+  { name: "Email", url: "mailto:sanjaydhandapani0@gmail.com" },
+  { name: "Phone", url: "tel:+919597726066" },
+];
