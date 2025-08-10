@@ -1,5 +1,7 @@
-import React, { useState, useRef, useEffect, ReactNode } from 'react';
-import { motion, useAnimation, useMotionValue, useSpring, Variants, Transition } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import type { ReactNode } from 'react';
+import { motion, useAnimation, useMotionValue, useSpring } from 'framer-motion';
+import type { Variants, Transition } from 'framer-motion';
 
 interface MorphingButtonProps {
   children: ReactNode;

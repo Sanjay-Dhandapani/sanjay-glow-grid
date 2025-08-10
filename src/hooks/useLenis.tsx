@@ -1,6 +1,7 @@
 /** @jsxImportSource react */
 import React from "react";
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, PropsWithChildren } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import type { PropsWithChildren } from "react";
 import Lenis from "@studio-freight/lenis";
 import { useMotionSettings } from "@/providers/MotionProvider";
 
@@ -47,7 +48,6 @@ export function useLenisProvider({ disabled = false }: { disabled?: boolean }) {
     const instance = new Lenis({
       lerp: 0.1,
       smoothWheel: true,
-      smoothTouch: false,
       wheelMultiplier: 1,
       gestureOrientation: "vertical",
     });

@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState, ReactNode } from 'react';
-import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 interface ParallaxLayerProps {
   children: ReactNode;
@@ -301,7 +302,7 @@ export const ParallaxScene = ({
   return (
     <ParallaxContainer {...containerProps}>
       {/* Background gradient */}
-      <ParallaxBackground className="bg-gradient-radial opacity-30" />
+      <ParallaxBackground className="bg-gradient-radial opacity-30"><div className="absolute inset-0" /></ParallaxBackground>
       
       {/* Floating particles */}
       <FloatingElements count={8} speed={0.2} size={15} />

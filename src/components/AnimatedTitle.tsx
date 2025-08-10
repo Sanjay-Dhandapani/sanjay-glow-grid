@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence, useAnimation } from 'framer-motion';
+import { motion, AnimatePresence, useAnimation, cubicBezier } from 'framer-motion';
 
 interface TitleConfig {
   text: string;
@@ -92,7 +92,7 @@ const AnimatedTitle = () => {
             filter: 'blur(0px)',
             transition: {
               duration: 0.8,
-              ease: [0.25, 0.46, 0.45, 0.94],
+              ease: cubicBezier(0.22, 1, 0.36, 1),
               filter: { duration: 0.6 }
             }
           },
@@ -103,7 +103,7 @@ const AnimatedTitle = () => {
             filter: 'blur(10px)',
             transition: {
               duration: 0.6,
-              ease: [0.55, 0.055, 0.675, 0.19]
+              ease: cubicBezier(0.22, 1, 0.36, 1)
             }
           }
         };
@@ -123,7 +123,7 @@ const AnimatedTitle = () => {
             filter: 'blur(0px) hue-rotate(0deg)',
             transition: {
               duration: 1.2,
-              ease: [0.68, -0.55, 0.265, 1.55],
+              ease: cubicBezier(0.22, 1, 0.36, 1),
               scale: { type: "spring", stiffness: 200, damping: 20 }
             }
           },
@@ -134,7 +134,7 @@ const AnimatedTitle = () => {
             filter: 'blur(20px) hue-rotate(-180deg)',
             transition: {
               duration: 0.8,
-              ease: [0.6, 0.01, 0.05, 0.95]
+              ease: cubicBezier(0.22, 1, 0.36, 1)
             }
           }
         };
@@ -154,7 +154,7 @@ const AnimatedTitle = () => {
             filter: 'blur(0px) contrast(100%)',
             transition: {
               duration: 0.7,
-              ease: "easeOut",
+              ease: cubicBezier(0.22, 1, 0.36, 1),
               x: { type: "spring", stiffness: 300, damping: 30 }
             }
           },
@@ -165,7 +165,7 @@ const AnimatedTitle = () => {
             filter: 'blur(5px) contrast(200%)',
             transition: {
               duration: 0.5,
-              ease: "easeIn"
+              ease: cubicBezier(0.22, 1, 0.36, 1)
             }
           }
         };
@@ -183,7 +183,7 @@ const AnimatedTitle = () => {
             scale: 1,
             transition: {
               duration: 0.8,
-              ease: [0.25, 0.46, 0.45, 0.94]
+              ease: cubicBezier(0.22, 1, 0.36, 1)
             }
           },
           exit: {
@@ -211,7 +211,7 @@ const AnimatedTitle = () => {
             filter: 'blur(0px) brightness(100%)',
             transition: {
               duration: 1,
-              ease: [0.34, 1.56, 0.64, 1],
+              ease: cubicBezier(0.22, 1, 0.36, 1),
               scale: { type: "spring", stiffness: 200, damping: 15 }
             }
           },
@@ -222,7 +222,7 @@ const AnimatedTitle = () => {
             filter: 'blur(15px) brightness(200%)',
             transition: {
               duration: 0.7,
-              ease: [0.6, 0.01, 0.05, 0.95]
+              ease: cubicBezier(0.22, 1, 0.36, 1)
             }
           }
         };
@@ -243,11 +243,11 @@ const AnimatedTitle = () => {
       opacity: 1,
       y: 0,
       rotateX: 0,
-      transition: {
-        delay: index * 0.05,
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
+        transition: {
+          delay: index * 0.05,
+          duration: 0.6,
+          ease: cubicBezier(0.22, 1, 0.36, 1)
+        }
     }),
     hover: (index: number) => ({
       y: -5,
@@ -256,7 +256,7 @@ const AnimatedTitle = () => {
       transition: {
         delay: index * 0.02,
         duration: 0.3,
-        ease: "easeOut"
+        ease: cubicBezier(0.22, 1, 0.36, 1)
       }
     })
   };
@@ -344,7 +344,7 @@ const AnimatedTitle = () => {
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: cubicBezier(0.22, 1, 0.36, 1)
               }}
             />
           )}

@@ -1,4 +1,5 @@
-import { Variants, Transition, useReducedMotion as fmUseReducedMotion } from "framer-motion";
+import type { Variants, Transition } from "framer-motion";
+import { useReducedMotion as fmUseReducedMotion } from "framer-motion";
 
 export const defaultSpring: Transition = {
   type: "spring",
@@ -72,5 +73,5 @@ export const kineticChar = (index: number, baseDelay = 0, perCharDelay = 0.03): 
 export function useReducedMotionSafe(): boolean {
   // Guard against SSR where window is undefined
   if (typeof window === "undefined") return true;
-  return fmUseReducedMotion();
+  return fmUseReducedMotion() ?? true;
 }

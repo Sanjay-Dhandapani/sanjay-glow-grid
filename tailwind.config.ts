@@ -100,10 +100,6 @@ export default {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
-				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
-				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))',
@@ -112,12 +108,6 @@ export default {
 					subtle: 'hsl(var(--accent-subtle))',
 				},
 				// Aliases to ensure presence
-				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))',
-					glow: 'hsl(var(--secondary-glow))',
-					muted: 'hsl(var(--secondary-muted))',
-				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'
@@ -144,13 +134,6 @@ export default {
 					950: 'hsl(var(--neutral-950))',
 				},
 				// Premium surface colors
-				surface: {
-					DEFAULT: 'hsl(var(--surface))',
-					hover: 'hsl(var(--surface-hover))',
-					active: 'hsl(var(--surface-active))',
-					subtle: 'hsl(var(--surface-subtle))',
-					muted: 'hsl(var(--surface-muted))',
-				}
 			},
 			// Enhanced Background Images
 			backgroundImage: {

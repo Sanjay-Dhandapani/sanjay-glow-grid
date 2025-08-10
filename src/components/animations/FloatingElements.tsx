@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef, ReactNode } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import type { ReactNode } from 'react';
 import { motion, useAnimation, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 
 interface FloatingElement {

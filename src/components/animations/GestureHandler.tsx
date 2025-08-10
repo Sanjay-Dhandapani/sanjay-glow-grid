@@ -1,5 +1,7 @@
-import React, { useRef, useState, useEffect, ReactNode } from 'react';
-import { motion, PanInfo, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import type { PanInfo } from 'framer-motion';
 
 interface GestureState {
   isGesturing: boolean;

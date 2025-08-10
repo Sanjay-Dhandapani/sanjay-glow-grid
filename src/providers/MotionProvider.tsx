@@ -1,4 +1,5 @@
-import { createContext, useContext, PropsWithChildren, useMemo } from "react";
+import { createContext, useContext, useMemo } from "react";
+import type { PropsWithChildren } from "react";
 import { useReducedMotion } from "framer-motion";
 
 export type MotionContextValue = {

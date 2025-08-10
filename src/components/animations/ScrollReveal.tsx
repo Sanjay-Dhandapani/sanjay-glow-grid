@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState, ReactNode } from 'react';
-import { motion, useAnimation, useInView, Variants, Transition } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
+import { motion, useAnimation, useInView } from 'framer-motion';
+import type { Variants, Transition } from 'framer-motion';
 
 interface ScrollRevealProps {
   children: ReactNode;
