@@ -1,0 +1,117 @@
+---
+// SEO Layout with comprehensive metadata
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  structuredData?: object;
+}
+
+const {
+  title = "Sanjay D - Full Stack Developer | Web Applications & Problem Solver",
+  description = "Passionate full-stack developer specializing in web applications, JWT authentication, and user-centric solutions. Computer Science student with 7.4 GPA and hands-on experience.",
+  keywords = "full stack developer, web developer, React, JavaScript, JWT, MySQL, portfolio, Sanjay D, computer science, web applications",
+  ogImage = "/lovable-uploads/224479e8-d491-449c-a9f8-ccb0b9c8aedb.png",
+  canonicalURL = Astro.url.href,
+  structuredData
+} = Astro.props;
+
+const site = Astro.site || new URL('https://sanjay-portfolio.lovable.app');
+const fullOgImageURL = new URL(ogImage, site).href;
+
+// Default structured data for person
+const defaultStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sanjay Dhandapani",
+  "alternateName": "Sanjay D",
+  "jobTitle": "Full Stack Developer",
+  "description": description,
+  "email": "sanjaydhandapani0@gmail.com",
+  "telephone": "+91 9597726066",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Coimbatore",
+    "addressRegion": "Tamil Nadu",
+    "addressCountry": "India"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Sri Krishna College Of Technology",
+    "location": "Chennai"
+  },
+  "knowsAbout": [
+    "Full Stack Development",
+    "JavaScript",
+    "React",
+    "Node.js",
+    "JWT Authentication",
+    "MySQL",
+    "Web Applications",
+    "REST APIs",
+    "Microservices"
+  ],
+  "url": site.href,
+  "sameAs": [
+    "https://github.com/sanjaydhandapani6066",
+    "https://www.linkedin.com/in/sanjaydhandapani6066/"
+  ]
+};
+
+const finalStructuredData = structuredData || defaultStructuredData;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content="Sanjay Dhandapani" />
+<meta name="robots" content="index, follow" />
+<meta name="language" content="English" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={fullOgImageURL} />
+<meta property="og:image:alt" content="Sanjay D - Full Stack Developer Portfolio" />
+<meta property="og:site_name" content="Sanjay D Portfolio" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={fullOgImageURL} />
+<meta property="twitter:image:alt" content="Sanjay D - Full Stack Developer Portfolio" />
+
+<!-- Additional Meta Tags -->
+<meta name="theme-color" content="#3B82F6" />
+<meta name="msapplication-TileColor" content="#3B82F6" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<!-- RSS Feed -->
+<link rel="alternate" type="application/rss+xml" title="Sanjay D - Portfolio Updates" href="/rss.xml" />
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(finalStructuredData)} />
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
