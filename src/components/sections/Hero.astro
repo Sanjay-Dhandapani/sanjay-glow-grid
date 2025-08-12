@@ -15,40 +15,40 @@ import AnimatedTitle from '../AnimatedTitle.tsx';
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <!-- Main Content -->
     <div class="space-y-8">
-      <!-- Profile Image -->
-      <div class="flex justify-center mb-8">
+      <!-- Profile Image - Responsive -->
+      <div class="flex justify-center mb-6 sm:mb-8">
         <div class="relative">
           <img 
             src="/lovable-uploads/224479e8-d491-449c-a9f8-ccb0b9c8aedb.png"
             alt="Sanjay D - Full Stack Developer"
-            class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-primary/20 shadow-2xl transform hover:scale-105 transition-all duration-300"
+            class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full border-2 sm:border-4 border-primary/20 shadow-2xl transform hover:scale-105 transition-all duration-300"
           />
           <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-accent/20 animate-pulse"></div>
         </div>
       </div>
 
-      <!-- Main Heading -->
-      <div class="space-y-4">
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
+      <!-- Main Heading - Fully Responsive -->
+      <div class="space-y-3 sm:space-y-4">
+        <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight">
           Hey there, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Sanjay D.</span>
         </h1>
         
         <!-- Animated Title Component -->
-        <div class="h-20 flex items-center justify-center">
+        <div class="h-16 sm:h-20 flex items-center justify-center">
           <AnimatedTitle client:load />
         </div>
       </div>
 
-      <!-- Subtitle -->
-      <p class="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
+      <!-- Subtitle - Responsive -->
+      <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light px-4">
         I'm passionate about crafting full-stack web applications that solve real-world problems through clean code and intuitive user experiences.
       </p>
 
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+      <!-- CTA Buttons - Responsive -->
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-6 sm:pt-8 px-4">
         <a 
           href="#projects" 
-          class="group relative px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-primary/90 hover:scale-105 hover:shadow-xl"
+          class="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-primary text-primary-foreground rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-primary/90 hover:scale-105 hover:shadow-xl text-center"
         >
           <span class="relative z-10">View My Work</span>
           <div class="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -56,7 +56,7 @@ import AnimatedTitle from '../AnimatedTitle.tsx';
         
         <a 
           href="#contact" 
-          class="group relative px-8 py-4 border-2 border-primary text-primary rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-105 hover:shadow-xl"
+          class="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-primary text-primary rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-105 hover:shadow-xl text-center"
         >
           <span class="relative z-10">Get In Touch</span>
         </a>

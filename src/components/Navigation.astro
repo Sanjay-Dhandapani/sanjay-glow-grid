@@ -4,94 +4,309 @@ import MotionToggle from "./ui/MotionToggle.tsx";
 ---
 
 <nav
-  class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/10"
+  id="main-nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out"
   role="navigation"
   aria-label="Primary"
+  data-nav-state="expanded"
 >
-  <div class="container mx-auto max-w-7xl px-6">
+  <!-- Progress indicator -->
+  <div class="absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-300 ease-out" id="scroll-progress"></div>
+  
+  <div class="nav-container transition-all duration-500 ease-out px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
-      <!-- Brand -->
-      <a href="/" class="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded-lg px-2 py-1 group">
-        <span class="text-2xl">✦</span>
-        <span class="font-jetbrains font-semibold tracking-tight text-foreground group-hover:text-accent transition-colors duration-200">sanjay</span>
+      <!-- Brand - responsive positioning -->
+      <a href="/" class="nav-brand flex items-center gap-2 sm:gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded-lg px-2 py-1 group transition-all duration-500">
+        <span class="text-xl sm:text-2xl">✦</span>
+        <span class="font-jetbrains font-semibold tracking-tight text-foreground group-hover:text-accent transition-colors duration-200 text-sm sm:text-base">sanjay</span>
       </a>
 
-      <!-- Desktop nav -->
-      <ul class="hidden md:flex items-center gap-8 text-sm">
-        <li><a href="/" class="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium">Home</a></li>
-        <li><a href="#projects" class="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium">Projects</a></li>
-        <li><a href="#about" class="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium">About</a></li>
-        <li><a href="#contact" class="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium">Contact</a></li>
+      <!-- Desktop nav - converging to center -->
+      <ul class="nav-links hidden md:flex items-center gap-4 lg:gap-8 text-sm transition-all duration-500">
+        <li><a href="#home" class="nav-link text-muted-foreground hover:text-foreground transition-all duration-300 font-medium relative" data-section="home">Home</a></li>
+        <li><a href="#about" class="nav-link text-muted-foreground hover:text-foreground transition-all duration-300 font-medium relative" data-section="about">About</a></li>
+        <li><a href="#projects" class="nav-link text-muted-foreground hover:text-foreground transition-all duration-300 font-medium relative" data-section="projects">Projects</a></li>
+        <li><a href="#contact" class="nav-link text-muted-foreground hover:text-foreground transition-all duration-300 font-medium relative" data-section="contact">Contact</a></li>
       </ul>
 
-      <!-- Utilities -->
-      <div class="hidden md:flex items-center gap-3">
+      <!-- Utilities - responsive -->
+      <div class="nav-utilities hidden md:flex items-center gap-2 lg:gap-3 transition-all duration-500">
         <ThemeToggle client:load />
         <MotionToggle client:load />
       </div>
 
-      <!-- Mobile: hamburger and utilities inline -->
+      <!-- Mobile: hamburger and utilities -->
       <div class="md:hidden flex items-center gap-2">
-        <ThemeToggle client:load />
-        <MotionToggle client:load />
+        <div class="flex items-center gap-1 scale-90 sm:scale-100">
+          <ThemeToggle client:load />
+          <MotionToggle client:load />
+        </div>
         <button
-          class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border/20 bg-card/50 text-foreground hover:bg-card hover:border-border transition-all duration-200"
+          class="mobile-menu-btn inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg border border-border/20 bg-card/50 text-foreground hover:bg-card hover:border-border transition-all duration-200"
           type="button"
           aria-controls="mobile-menu"
           aria-expanded="false"
           aria-label="Open menu"
           data-menu-toggle
         >
-          <span aria-hidden="true" class="text-lg">☰</span>
+          <span aria-hidden="true" class="text-base sm:text-lg hamburger-icon transition-transform duration-300">☰</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="md:hidden">
-    <div class="px-6 pb-6 pt-2 border-t border-border/10 bg-background/98">
+  <!-- Mobile menu - fully responsive -->
+  <div id="mobile-menu" class="md:hidden mobile-menu-container">
+    <div class="px-4 sm:px-6 pb-6 pt-2 border-t border-border/10 bg-background/98 backdrop-blur-sm">
       <ul class="grid gap-1 text-sm">
-        <li><a href="/" class="block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">Home</a></li>
-        <li><a href="#projects" class="block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">Projects</a></li>
-        <li><a href="#about" class="block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">About</a></li>
-        <li><a href="#contact" class="block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">Contact</a></li>
+        <li><a href="#home" class="mobile-nav-link block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">Home</a></li>
+        <li><a href="#about" class="mobile-nav-link block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">About</a></li>
+        <li><a href="#projects" class="mobile-nav-link block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">Projects</a></li>
+        <li><a href="#contact" class="mobile-nav-link block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">Contact</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
 <style>
-  /* Progressive enhancement: basic CSS-only toggle using :has when available */
+  /* Navbar states and transitions */
+  #main-nav {
+    background: hsl(var(--background) / 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid hsl(var(--border) / 0.1);
+  }
+
+  /* Expanded state (default) */
+  #main-nav[data-nav-state="expanded"] .nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Converged state (while scrolling) */
+  #main-nav[data-nav-state="converged"] {
+    background: hsl(var(--background) / 0.98);
+    border-bottom: 1px solid hsl(var(--border) / 0.2);
+    box-shadow: 0 4px 20px -2px hsl(var(--foreground) / 0.1);
+  }
+
+  #main-nav[data-nav-state="converged"] .nav-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  #main-nav[data-nav-state="converged"] .nav-links {
+    gap: 1.5rem;
+  }
+
+  #main-nav[data-nav-state="converged"] .nav-brand {
+    transform: scale(0.95);
+  }
+
+  #main-nav[data-nav-state="converged"] .nav-utilities {
+    transform: scale(0.9);
+  }
+
+  /* Active nav link indicator */
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: hsl(var(--accent));
+    border-radius: 1px;
+  }
+
+  /* Mobile menu transitions */
+  .mobile-menu-container {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-out;
+    pointer-events: none;
+  }
+
+  .mobile-menu-container.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Hamburger animation */
+  .mobile-menu-btn[aria-expanded="true"] .hamburger-icon {
+    transform: rotate(90deg);
+  }
+
+  /* Responsive utilities */
+  @media (max-width: 640px) {
+    #main-nav .nav-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    #main-nav[data-nav-state="converged"] .nav-container {
+      max-width: 100%;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  /* Progressive enhancement: CSS-only mobile menu toggle */
   @supports selector(nav:has(button[data-menu-toggle][aria-expanded="true"])) {
-    nav:has(button[data-menu-toggle][aria-expanded="true"]) #mobile-menu {
-      display: block;
+    nav:has(button[data-menu-toggle][aria-expanded="true"]) .mobile-menu-container {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
   }
 </style>
 
 <script is:raw>
-  // Small progressive enhancement for mobile menu: no framework, accessibility friendly
   (function () {
     const nav = document.currentScript?.closest('nav');
     if (!nav) return;
+    
     const btn = nav.querySelector('button[data-menu-toggle]');
     const menu = nav.querySelector('#mobile-menu');
-    if (!btn || !menu) return;
+    const progressBar = nav.querySelector('#scroll-progress');
+    const navLinks = nav.querySelectorAll('.nav-link');
+    
+    let isScrolling = false;
+    let scrollTimeout;
 
-    function closeOnEscape(e) {
-      if (e.key === 'Escape') {
+    // Mobile menu functionality
+    if (btn && menu) {
+      function closeOnEscape(e) {
+        if (e.key === 'Escape') {
+          closeMenu();
+        }
+      }
+
+      function closeMenu() {
         btn.setAttribute('aria-expanded', 'false');
         btn.setAttribute('aria-label', 'Open menu');
+        menu.classList.remove('open');
+      }
+
+      function openMenu() {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Close menu');
+        menu.classList.add('open');
+      }
+
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        expanded ? closeMenu() : openMenu();
+      });
+
+      // Close menu when clicking nav links
+      menu.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('keydown', closeOnEscape);
+    }
+
+    // Innovative scroll behavior - convergence effect
+    function updateNavOnScroll() {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight - windowHeight;
+      const scrollProgress = Math.min(scrollY / documentHeight, 1);
+      
+      // Update progress bar
+      if (progressBar) {
+        progressBar.style.width = `${scrollProgress * 100}%`;
+      }
+
+      // Convergence effect based on scroll position
+      const convergenceThreshold = 100;
+      const maxConvergence = 300;
+      
+      if (scrollY > convergenceThreshold) {
+        const convergenceProgress = Math.min((scrollY - convergenceThreshold) / maxConvergence, 1);
+        nav.setAttribute('data-nav-state', 'converged');
+        
+        // Add subtle scale and opacity effects based on scroll speed
+        if (!isScrolling) {
+          isScrolling = true;
+          nav.style.transform = 'translateY(-2px)';
+        }
+        
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          isScrolling = false;
+          nav.style.transform = 'translateY(0)';
+        }, 150);
+      } else {
+        nav.setAttribute('data-nav-state', 'expanded');
       }
     }
 
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      btn.setAttribute('aria-label', expanded ? 'Open menu' : 'Close menu');
+    // Active section detection
+    function updateActiveLink() {
+      const sections = document.querySelectorAll('section[id]');
+      const scrollPos = window.scrollY + 100;
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === sectionId) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+
+    // Smooth scroll for nav links
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+          const navHeight = nav.offsetHeight;
+          const targetPos = targetSection.offsetTop - navHeight - 20;
+          
+          window.scrollTo({
+            top: targetPos,
+            behavior: 'smooth'
+          });
+        }
+      });
     });
 
-    document.addEventListener('keydown', closeOnEscape);
+    // Throttled scroll listener for performance
+    let scrollTicking = false;
+    function onScroll() {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          updateNavOnScroll();
+          updateActiveLink();
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }
+
+    // Initialize
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      // Recalculate on resize
+      updateNavOnScroll();
+      updateActiveLink();
+    });
+    
+    // Initial calls
+    updateNavOnScroll();
+    updateActiveLink();
   })();
 </script>
