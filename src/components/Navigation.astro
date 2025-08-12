@@ -4,26 +4,24 @@ import MotionToggle from "./ui/MotionToggle.tsx";
 ---
 
 <nav
-  class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-bg/60 bg-bg/80 border-b border-border"
+  class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/10"
   role="navigation"
   aria-label="Primary"
 >
-  <div class="container mx-auto max-w-7xl px-4 sm:px-6">
+  <div class="container mx-auto max-w-7xl px-6">
     <div class="flex h-16 items-center justify-between">
       <!-- Brand -->
-      <a href="/" class="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md px-2 py-1">
-        <span class="inline-block h-2 w-2 rounded-full bg-primary ring-2 ring-primary/40"></span>
-        <span class="font-semibold tracking-tight">Sanjay</span>
+      <a href="/" class="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded-lg px-2 py-1 group">
+        <span class="text-2xl">✦</span>
+        <span class="font-jetbrains font-semibold tracking-tight text-foreground group-hover:text-accent transition-colors duration-200">sanjay</span>
       </a>
 
       <!-- Desktop nav -->
-      <ul class="hidden md:flex items-center gap-6 text-sm">
-        <li><a href="/" class="text-token hover:text-primary focus-visible:ring-2 focus-visible:ring-ring rounded-md px-2 py-1">Home</a></li>
-        <li><a href="/projects" class="text-token hover:text-primary focus-visible:ring-2 focus-visible:ring-ring rounded-md px-2 py-1">Projects</a></li>
-        <li><a href="/about" class="text-token hover:text-primary focus-visible:ring-2 focus-visible:ring-ring rounded-md px-2 py-1">About</a></li>
-        <li><a href="/articles" class="text-token hover:text-primary focus-visible:ring-2 focus-visible:ring-ring rounded-md px-2 py-1">Articles</a></li>
-        <li><a href="/contact" class="text-token hover:text-primary focus-visible:ring-2 focus-visible:ring-ring rounded-md px-2 py-1">Contact</a></li>
-        <li><a href="/resume" class="text-token hover:text-primary focus-visible:ring-2 focus-visible:ring-ring rounded-md px-2 py-1">Resume</a></li>
+      <ul class="hidden md:flex items-center gap-8 text-sm">
+        <li><a href="/" class="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium">Home</a></li>
+        <li><a href="#projects" class="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium">Projects</a></li>
+        <li><a href="#about" class="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium">About</a></li>
+        <li><a href="#contact" class="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium">Contact</a></li>
       </ul>
 
       <!-- Utilities -->
@@ -37,29 +35,27 @@ import MotionToggle from "./ui/MotionToggle.tsx";
         <ThemeToggle client:load />
         <MotionToggle client:load />
         <button
-          class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border bg-card text-fg hover:bg-bg/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border/20 bg-card/50 text-foreground hover:bg-card hover:border-border transition-all duration-200"
           type="button"
           aria-controls="mobile-menu"
           aria-expanded="false"
           aria-label="Open menu"
           data-menu-toggle
         >
-          <span aria-hidden="true">☰</span>
+          <span aria-hidden="true" class="text-lg">☰</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Mobile menu (CSS-only disclosure via :target fallback and noscript support with details) -->
+  <!-- Mobile menu -->
   <div id="mobile-menu" class="md:hidden">
-    <div class="px-4 pb-4 pt-2 border-t border-border bg-bg/95">
-      <ul class="grid gap-2 text-sm">
-        <li><a href="/" class="block rounded-md px-3 py-2 hover:bg-card focus-visible:ring-2 focus-visible:ring-ring">Home</a></li>
-        <li><a href="/projects" class="block rounded-md px-3 py-2 hover:bg-card focus-visible:ring-2 focus-visible:ring-ring">Projects</a></li>
-        <li><a href="/about" class="block rounded-md px-3 py-2 hover:bg-card focus-visible:ring-2 focus-visible:ring-ring">About</a></li>
-        <li><a href="/articles" class="block rounded-md px-3 py-2 hover:bg-card focus-visible:ring-2 focus-visible:ring-ring">Articles</a></li>
-        <li><a href="/contact" class="block rounded-md px-3 py-2 hover:bg-card focus-visible:ring-2 focus-visible:ring-ring">Contact</a></li>
-        <li><a href="/resume" class="block rounded-md px-3 py-2 hover:bg-card focus-visible:ring-2 focus-visible:ring-ring">Resume</a></li>
+    <div class="px-6 pb-6 pt-2 border-t border-border/10 bg-background/98">
+      <ul class="grid gap-1 text-sm">
+        <li><a href="/" class="block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">Home</a></li>
+        <li><a href="#projects" class="block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">Projects</a></li>
+        <li><a href="#about" class="block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">About</a></li>
+        <li><a href="#contact" class="block rounded-lg px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-card/50 transition-all duration-200">Contact</a></li>
       </ul>
     </div>
   </div>

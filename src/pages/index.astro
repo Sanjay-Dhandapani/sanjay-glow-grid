@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
 import Hero from '../components/sections/Hero.astro';
 import About from '../components/sections/About.astro';
 import Skills from '../components/sections/Skills.astro';
@@ -15,7 +16,8 @@ import Footer from '../components/Footer.astro';
   description="Passionate full-stack developer specializing in web applications, JWT authentication, and user-centric solutions. Computer Science student with 7.4 GPA and hands-on experience."
   image="/lovable-uploads/224479e8-d491-449c-a9f8-ccb0b9c8aedb.png"
 >
-  <main class="relative z-10 font-inter">
+  <Navigation />
+  <main class="relative z-10 font-inter pt-16">
     <Hero />
     <About />
     <Skills />
