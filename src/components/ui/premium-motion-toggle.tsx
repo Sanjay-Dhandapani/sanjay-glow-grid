@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Zap, ZapOff, Minus } from 'lucide-react';
-import { initMotion, setMotionSetting, getMotionSetting, type MotionSetting } from '@/lib/motion';
+import { initMotion, setMotionSetting, getMotionSetting, type MotionSetting } from '../../lib/motion';
 
 export default function PremiumMotionToggle() {
   const [currentMotion, setCurrentMotion] = useState<MotionSetting>('full');

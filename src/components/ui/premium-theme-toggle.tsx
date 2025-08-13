@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Sun, Moon, Monitor } from 'lucide-react';
-import { initTheme, setTheme, getTheme, type Theme } from '@/lib/theme';
+import { initTheme, setTheme, getTheme, type Theme } from '../../lib/theme';
 
 export default function PremiumThemeToggle() {
   const [currentTheme, setCurrentTheme] = useState<Theme>('dark');

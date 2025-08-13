@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { initMotion } from '@/lib/motion';
+import { initMotion } from '../../lib/motion';
 
 interface MotionContextValue {
   initialized: boolean;

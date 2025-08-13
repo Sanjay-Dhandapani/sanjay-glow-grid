@@ -50,7 +50,7 @@ const TargetCursor = ({
     let currentTargetMove: ((ev: Event) => void) | null = null;
     let currentLeaveHandler: (() => void) | null = null;
     let isAnimatingToTarget = false;
-    let resumeTimeout: NodeJS.Timeout | null = null;
+    let resumeTimeout: number | null = null;
 
     const cleanupTarget = (target: Element) => {
       if (currentTargetMove) {
@@ -142,7 +142,7 @@ const TargetCursor = ({
       }
 
       if (resumeTimeout) {
-        clearTimeout(resumeTimeout);
+        window.clearTimeout(resumeTimeout);
         resumeTimeout = null;
       }
 
@@ -263,7 +263,7 @@ const TargetCursor = ({
           });
         }
 
-        resumeTimeout = setTimeout(() => {
+        resumeTimeout = window.setTimeout(() => {
           if (!activeTarget && cursorRef.current && spinTl.current) {
             const currentRotation = gsap.getProperty(
               cursorRef.current,

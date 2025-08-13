@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { initTheme } from '@/lib/theme';
+import { initTheme } from '../../lib/theme';
 
 interface ThemeContextValue {
   initialized: boolean;
