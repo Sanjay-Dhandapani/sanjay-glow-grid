@@ -9,6 +9,9 @@ import Experience from '../components/sections/Experience.astro';
 import Education from '../components/Education.astro';
 import Contact from '../components/sections/Contact.astro';
 import Footer from '../components/Footer.astro';
+import TargetCursor from '../components/TargetCursor.tsx';
+import ThemeProvider from '../components/ui/ThemeProvider.tsx';
+import MotionProvider from '../components/ui/MotionProvider.tsx';
 ---
 
 <Layout 
@@ -16,16 +19,21 @@ import Footer from '../components/Footer.astro';
   description="Passionate full-stack developer specializing in web applications, JWT authentication, and user-centric solutions. Computer Science student with 7.4 GPA and hands-on experience."
   image="/lovable-uploads/224479e8-d491-449c-a9f8-ccb0b9c8aedb.png"
 >
-  <Navigation />
-  <main class="relative z-10 font-inter pt-16">
-    <Hero />
-    <About />
-    <Skills />
-    <Experience />
-    <Education />
-    <Projects />
-    <Contact />
-  </main>
-  
-  <Footer />
+  <ThemeProvider client:load>
+    <MotionProvider client:load>
+      <TargetCursor client:load spinDuration={2} hideDefaultCursor={true} />
+      <Navigation />
+      <main class="relative z-10 font-inter pt-16">
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Education />
+        <Projects />
+        <Contact />
+      </main>
+      
+      <Footer />
+    </MotionProvider>
+  </ThemeProvider>
 </Layout>
