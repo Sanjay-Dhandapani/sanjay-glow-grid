@@ -5,51 +5,58 @@ import PremiumMotionToggle from "./ui/premium-motion-toggle.tsx";
 
 <nav
   id="main-nav"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out"
+  class="cursor-target fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out"
   role="navigation"
   aria-label="Primary"
   data-nav-state="expanded"
 >
-  <!-- Progress indicator -->
-  <div class="absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-300 ease-out" id="scroll-progress"></div>
+  <!-- Sophisticated Progress indicator -->
+  <div class="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary via-accent to-primary transition-all duration-300 ease-out shadow-glow" id="scroll-progress"></div>
   
   <div class="nav-container transition-all duration-500 ease-out px-4 sm:px-6 lg:px-8">
-    <div class="flex h-16 items-center justify-between">
-      <!-- Brand - responsive positioning -->
-      <a href="/" class="nav-brand flex items-center gap-2 sm:gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded-lg px-2 py-1 group transition-all duration-500">
-        <span class="text-xl sm:text-2xl">✦</span>
-        <span class="font-jetbrains font-semibold tracking-tight text-foreground group-hover:text-accent transition-colors duration-200 text-sm sm:text-base">sanjay</span>
+    <div class="flex h-20 items-center justify-between">
+      <!-- Premium Brand -->
+      <a href="/" class="cursor-target nav-brand flex items-center gap-2 sm:gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-lg px-2 py-1 group transition-all duration-500">
+        <span class="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">SD<span class="text-primary">.</span></span>
       </a>
 
-      <!-- Desktop nav - converging to center -->
-      <ul class="nav-links hidden md:flex items-center gap-4 lg:gap-8 text-sm transition-all duration-500">
-        <li><a href="#home" class="nav-link text-muted-foreground hover:text-foreground transition-all duration-300 font-medium relative" data-section="home">Home</a></li>
-        <li><a href="#about" class="nav-link text-muted-foreground hover:text-foreground transition-all duration-300 font-medium relative" data-section="about">About</a></li>
-        <li><a href="#projects" class="nav-link text-muted-foreground hover:text-foreground transition-all duration-300 font-medium relative" data-section="projects">Projects</a></li>
-        <li><a href="#contact" class="nav-link text-muted-foreground hover:text-foreground transition-all duration-300 font-medium relative" data-section="contact">Contact</a></li>
-      </ul>
+      <!-- Centered Navigation with Pill Design -->
+      <div class="nav-center-wrapper hidden md:block absolute left-1/2 transform -translate-x-1/2" id="nav-center">
+        <div class="nav-pill bg-card/50 backdrop-blur-xl rounded-full px-6 py-3 border border-border/30 shadow-card">
+          <ul class="nav-links flex items-center space-x-1 text-sm transition-all duration-500">
+            <li><a href="#home" class="cursor-target nav-link px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-primary/10 rounded-full font-medium relative transition-all duration-300" data-section="home"><span class="relative z-10">Home</span></a></li>
+            <li><a href="#about" class="cursor-target nav-link px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-primary/10 rounded-full font-medium relative transition-all duration-300" data-section="about"><span class="relative z-10">About</span></a></li>
+            <li><a href="#skills" class="cursor-target nav-link px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-primary/10 rounded-full font-medium relative transition-all duration-300" data-section="skills"><span class="relative z-10">Skills</span></a></li>
+            <li><a href="#experience" class="cursor-target nav-link px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-primary/10 rounded-full font-medium relative transition-all duration-300" data-section="experience"><span class="relative z-10">Experience</span></a></li>
+            <li><a href="#projects" class="cursor-target nav-link px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-primary/10 rounded-full font-medium relative transition-all duration-300" data-section="projects"><span class="relative z-10">Projects</span></a></li>
+            <li><a href="#contact" class="cursor-target nav-link px-4 py-2 text-muted-foreground hover:text-foreground hover:bg-primary/10 rounded-full font-medium relative transition-all duration-300" data-section="contact"><span class="relative z-10">Contact</span></a></li>
+          </ul>
+        </div>
+      </div>
 
-      <!-- Utilities - responsive -->
-      <div class="nav-utilities hidden md:flex items-center gap-2 lg:gap-3 transition-all duration-500">
+      <!-- Premium Controls -->
+      <div class="nav-utilities hidden md:flex items-center gap-4 transition-all duration-500">
         <PremiumThemeToggle client:load />
         <PremiumMotionToggle client:load />
       </div>
 
       <!-- Mobile: hamburger and utilities -->
-      <div class="md:hidden flex items-center gap-2">
-        <div class="flex items-center gap-1 scale-90 sm:scale-100">
+      <div class="md:hidden flex items-center gap-3">
+        <div class="flex items-center gap-2">
           <PremiumThemeToggle client:load />
           <PremiumMotionToggle client:load />
         </div>
         <button
-          class="mobile-menu-btn inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg border border-border/20 bg-card/50 text-foreground hover:bg-card hover:border-border transition-all duration-200"
+          class="cursor-target mobile-menu-btn inline-flex h-10 w-10 items-center justify-center rounded-lg bg-card/50 backdrop-blur-sm border border-border/30 text-foreground hover:bg-card hover:border-border transition-all duration-300"
           type="button"
           aria-controls="mobile-menu"
           aria-expanded="false"
           aria-label="Open menu"
           data-menu-toggle
         >
-          <span aria-hidden="true" class="text-base sm:text-lg hamburger-icon transition-transform duration-300">☰</span>
+          <svg class="h-6 w-6 hamburger-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </button>
       </div>
     </div>
@@ -69,54 +76,60 @@ import PremiumMotionToggle from "./ui/premium-motion-toggle.tsx";
 </nav>
 
 <style>
-  /* Navbar states and transitions */
+  /* Sophisticated Navbar states and transitions */
   #main-nav {
-    background: hsl(var(--background) / 0.95);
-    backdrop-filter: blur(12px);
+    background: hsl(var(--background) / 0.90);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid hsl(var(--border) / 0.1);
   }
 
   /* Expanded state (default) */
   #main-nav[data-nav-state="expanded"] .nav-container {
-    max-width: 1280px;
+    max-width: 1400px;
     margin: 0 auto;
   }
 
-  /* Converged state (while scrolling) */
+  /* Converged state (while scrolling) - Professional center convergence */
   #main-nav[data-nav-state="converged"] {
-    background: hsl(var(--background) / 0.98);
+    background: hsl(var(--background) / 0.95);
+    backdrop-filter: blur(24px);
     border-bottom: 1px solid hsl(var(--border) / 0.2);
-    box-shadow: 0 4px 20px -2px hsl(var(--foreground) / 0.1);
+    box-shadow: var(--shadow-card);
   }
 
   #main-nav[data-nav-state="converged"] .nav-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
   }
 
-  #main-nav[data-nav-state="converged"] .nav-links {
-    gap: 1.5rem;
+  #main-nav[data-nav-state="converged"] .nav-pill {
+    transform: scale(0.95);
+    background: hsl(var(--card) / 0.8);
+    border-color: hsl(var(--border) / 0.5);
   }
 
   #main-nav[data-nav-state="converged"] .nav-brand {
-    transform: scale(0.95);
+    transform: scale(0.9);
   }
 
   #main-nav[data-nav-state="converged"] .nav-utilities {
     transform: scale(0.9);
+    gap: 0.5rem;
   }
 
-  /* Active nav link indicator */
-  .nav-link.active::after {
+  /* Sophisticated Active nav link indicator */
+  .nav-link.active {
+    background: hsl(var(--primary) / 0.1);
+    color: hsl(var(--foreground));
+  }
+  
+  .nav-link.active::before {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 2px;
-    background: hsl(var(--accent));
-    border-radius: 1px;
+    inset: 0;
+    background: hsl(var(--primary) / 0.05);
+    border-radius: 9999px;
+    border: 1px solid hsl(var(--primary) / 0.2);
   }
 
   /* Mobile menu transitions */
