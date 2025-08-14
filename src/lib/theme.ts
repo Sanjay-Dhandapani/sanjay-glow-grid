@@ -17,11 +17,16 @@ export function setTheme(theme: Theme) {
   
   const root = document.documentElement;
   
+  // Remove existing theme classes
+  root.classList.remove('dark', 'light');
+  
   if (theme === 'system') {
     const systemTheme = getSystemTheme();
     root.setAttribute('data-theme', systemTheme);
+    root.classList.add(systemTheme);
   } else {
     root.setAttribute('data-theme', theme);
+    root.classList.add(theme);
   }
 }
 
