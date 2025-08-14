@@ -1,6 +1,6 @@
 ---
-import PremiumThemeToggle from "./ui/premium-theme-toggle.tsx";
-import PremiumMotionToggle from "./ui/premium-motion-toggle.tsx";
+import SimpleThemeToggle from "./ui/SimpleThemeToggle.tsx";
+import SimpleMotionToggle from "./ui/SimpleMotionToggle.tsx";
 ---
 
 <nav
@@ -36,15 +36,15 @@ import PremiumMotionToggle from "./ui/premium-motion-toggle.tsx";
 
       <!-- Premium Controls -->
       <div class="nav-utilities hidden md:flex items-center gap-4 transition-all duration-500">
-        <PremiumThemeToggle client:load />
-        <PremiumMotionToggle client:load />
+        <SimpleThemeToggle client:load />
+        <SimpleMotionToggle client:load />
       </div>
 
       <!-- Mobile: hamburger and utilities -->
       <div class="md:hidden flex items-center gap-3">
         <div class="flex items-center gap-2">
-          <PremiumThemeToggle client:load />
-          <PremiumMotionToggle client:load />
+          <SimpleThemeToggle client:load />
+          <SimpleMotionToggle client:load />
         </div>
         <button
           class="cursor-target mobile-menu-btn inline-flex h-10 w-10 items-center justify-center rounded-lg bg-card/50 backdrop-blur-sm border border-border/30 text-foreground hover:bg-card hover:border-border transition-all duration-300"

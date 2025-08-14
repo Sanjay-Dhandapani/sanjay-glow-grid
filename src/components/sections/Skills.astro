@@ -2,7 +2,7 @@
 // Skills Section with interactive skill cards
 ---
 
-<section id="skills" class="py-24 px-6 relative overflow-hidden">
+<section id="skills" class="py-24 px-6 relative overflow-hidden bg-background">
   <!-- Background Effects -->
   <div class="absolute inset-0 bg-gradient-to-l from-primary/5 via-background to-accent/5"></div>
   
@@ -97,7 +97,7 @@
 
 <style>
   .holographic {
-    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+    background: linear-gradient(45deg, #000000, #333333, #666666, #000000);
     background-size: 400% 400%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -115,13 +115,7 @@
   }
   
   .skill-card {
-    @apply backdrop-blur-sm rounded-xl p-4 border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer;
-    background-color: rgba(17, 24, 39, 0.8);
-    border-color: rgb(75, 85, 99);
-  }
-  
-  .skill-card:hover {
-    border-color: rgba(59, 130, 246, 0.5);
+    @apply backdrop-blur-sm rounded-xl p-4 border border-border bg-card/80 transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer hover:border-primary/50;
   }
   
   .skill-icon {

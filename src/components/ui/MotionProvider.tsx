@@ -11,7 +11,7 @@ export function useMotion() {
   return useContext(MotionContext);
 }
 
-export function MotionProvider({ children }: { children: ReactNode }) {
+export default function MotionProvider({ children }: { children: ReactNode }) {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
