@@ -51,7 +51,7 @@
     --radius: 0.5rem;
   }
 
-  .dark {
+  [data-theme="dark"] {
     color-scheme: dark;
     
     /* Dark Mode - Sophisticated Black & White Design System */
@@ -71,7 +71,7 @@
     --accent-foreground: 0 0% 8%;
     --destructive: 0 65% 55%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 85%;          /* Light border for dark mode */
+    --border: 0 0% 20%;          /* Darker border for better contrast */
     --input: 0 0% 8%;
     --ring: 0 0% 98%;
     

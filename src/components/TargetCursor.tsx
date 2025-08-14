@@ -69,16 +69,7 @@ const TargetCursor = ({
       y: window.innerHeight / 2,
     });
 
-    const createSpinTimeline = () => {
-      if (spinTl.current) {
-        spinTl.current.kill();
-      }
-      spinTl.current = gsap
-        .timeline({ repeat: -1 })
-        .to(cursor, { rotation: "+=360", duration: spinDuration, ease: "none" });
-    };
-
-    createSpinTimeline();
+    // Removed spinning animation - keeping only target focus
 
     const moveHandler = (e: MouseEvent) => moveCursor(e.clientX, e.clientY);
     window.addEventListener("mousemove", moveHandler);
@@ -132,10 +123,7 @@ const TargetCursor = ({
 
       activeTarget = target;
 
-      gsap.killTweensOf(cursorRef.current, "rotation");
-      spinTl.current?.pause();
-
-      gsap.set(cursorRef.current, { rotation: 0 });
+      // No rotation animations needed
 
       const updateCorners = (mouseX?: number, mouseY?: number) => {
         const rect = target.getBoundingClientRect();
@@ -247,28 +235,8 @@ const TargetCursor = ({
           });
         }
 
+        // No spin resume needed
         resumeTimeout = window.setTimeout(() => {
-          if (!activeTarget && cursorRef.current && spinTl.current) {
-            const currentRotation = gsap.getProperty(
-              cursorRef.current,
-              "rotation"
-            ) as number;
-            const normalizedRotation = currentRotation % 360;
-
-            spinTl.current.kill();
-            spinTl.current = gsap
-              .timeline({ repeat: -1 })
-              .to(cursorRef.current, { rotation: "+=360", duration: spinDuration, ease: "none" });
-
-            gsap.to(cursorRef.current, {
-              rotation: normalizedRotation + 360,
-              duration: spinDuration * (1 - normalizedRotation / 360),
-              ease: "none",
-              onComplete: () => {
-                spinTl.current?.restart();
-              },
-            });
-          }
           resumeTimeout = null;
         }, 50);
 
@@ -298,16 +266,7 @@ const TargetCursor = ({
     };
   }, [targetSelector, spinDuration, moveCursor, constants, hideDefaultCursor]);
 
-  useEffect(() => {
-    if (!cursorRef.current || !spinTl.current) return;
-    
-    if (spinTl.current.isActive()) {
-      spinTl.current.kill();
-      spinTl.current = gsap
-        .timeline({ repeat: -1 })
-        .to(cursorRef.current, { rotation: "+=360", duration: spinDuration, ease: "none" });
-    }
-  }, [spinDuration]);
+  // Removed spin duration effect
 
   return (
     <div
