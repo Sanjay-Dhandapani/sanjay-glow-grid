@@ -194,12 +194,12 @@
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
   }
   
-  /* Disable cursor on touch devices */
+  /* Disable target cursor on touch devices */
   @media (hover: none) and (pointer: coarse) {
     body {
       cursor: auto !important;
     }
-    #cursor, #cursor-dot {
+    .target-cursor-corner {
       display: none !important;
     }
   }

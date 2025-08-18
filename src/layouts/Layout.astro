@@ -75,9 +75,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </head>
   
   <body class="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white antialiased overflow-x-hidden cursor-none transition-colors duration-300">
-    <!-- Custom Cursor -->
-    <div id="cursor" class="fixed w-6 h-6 bg-black/30 dark:bg-white/30 rounded-full pointer-events-none z-[9999] mix-blend-difference transition-all duration-150 ease-out"></div>
-    <div id="cursor-dot" class="fixed w-1 h-1 bg-black dark:bg-white rounded-full pointer-events-none z-[9999] transition-all duration-75 ease-out"></div>
     
     <!-- Animated background -->
     <div class="fixed inset-0 -z-10">
@@ -100,73 +97,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     
     <!-- Performance and accessibility improvements -->
     <script>
-      // Custom Cursor Animation
-      const cursor = document.getElementById('cursor');
-      const cursorDot = document.getElementById('cursor-dot');
-      let mouseX = 0;
-      let mouseY = 0;
-      let cursorX = 0;
-      let cursorY = 0;
-      let dotX = 0;
-      let dotY = 0;
-
-      // Update cursor position
-      document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      });
-
-      // Smooth cursor animation
-      function animateCursor() {
-        // Cursor ring follows with delay
-        cursorX += (mouseX - cursorX) * 0.1;
-        cursorY += (mouseY - cursorY) * 0.1;
-        
-        // Cursor dot follows immediately
-        dotX += (mouseX - dotX) * 0.8;
-        dotY += (mouseY - dotY) * 0.8;
-        
-        if (cursor) {
-          cursor.style.left = cursorX - 12 + 'px';
-          cursor.style.top = cursorY - 12 + 'px';
-        }
-        
-        if (cursorDot) {
-          cursorDot.style.left = dotX - 2 + 'px';
-          cursorDot.style.top = dotY - 2 + 'px';
-        }
-        
-        requestAnimationFrame(animateCursor);
-      }
-      
-      animateCursor();
-      
-      // Cursor interactions
-      const interactiveElements = document.querySelectorAll('a, button, [role="button"], input, textarea, select');
-      
-      interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          if (cursor) cursor.style.transform = 'scale(1.5)';
-          if (cursorDot) cursorDot.style.transform = 'scale(2)';
-        });
-        
-        el.addEventListener('mouseleave', () => {
-          if (cursor) cursor.style.transform = 'scale(1)';
-          if (cursorDot) cursorDot.style.transform = 'scale(1)';
-        });
-      });
-      
-      // Hide cursor when leaving window
-      document.addEventListener('mouseleave', () => {
-        if (cursor) cursor.style.opacity = '0';
-        if (cursorDot) cursorDot.style.opacity = '0';
-      });
-      
-      document.addEventListener('mouseenter', () => {
-        if (cursor) cursor.style.opacity = '1';
-        if (cursorDot) cursorDot.style.opacity = '1';
-      });
-
       // Smooth scroll polyfill for older browsers
       if (!('scrollBehavior' in document.documentElement.style)) {
         import('smoothscroll-polyfill').then(smoothscroll => {

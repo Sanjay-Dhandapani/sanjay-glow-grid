@@ -274,6 +274,13 @@ const TargetCursor = ({
       className="fixed top-0 left-0 w-0 h-0 pointer-events-none z-[9999] mix-blend-difference transform -translate-x-1/2 -translate-y-1/2"
       style={{ willChange: 'transform' }}
     >
+      {/* Center dot */}
+      <div
+        className="absolute left-1/2 top-1/2 w-1 h-1 bg-black dark:bg-white rounded-full transform -translate-x-1/2 -translate-y-1/2"
+        style={{ willChange: 'transform' }}
+      />
+      
+      {/* Corner brackets */}
       <div
         className="target-cursor-corner absolute left-1/2 top-1/2 w-3 h-3 border-[3px] border-black dark:border-white transform -translate-x-[150%] -translate-y-[150%] border-r-0 border-b-0"
         style={{ willChange: 'transform' }}
